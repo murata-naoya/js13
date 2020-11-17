@@ -1,0 +1,45 @@
+<% if @book_new.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= @book_new.errors.count %> error prohibited this user from being saved: </h2>
+                <ul>
+                <% @book_new.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+               <% end %>
+                </ul>
+              </div>
+          <% end %>
+<%= render 'users/list', user: @user, book: @book_new %>
+
+<div class="col-md-8">
+
+<h1>Users</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @users.each do |user| %>
+    <div class="books-index-item">
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40,size: '200×200', format: 'jpeg' %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to 'Show', user_path(user), class: "user_#{user.id}" %></td>
+      </tr>
+    </div>
+    <% end %>
+
+  </tbody>
+</table>
+
+</div>
+</div>
+
+
+
+

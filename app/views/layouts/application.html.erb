@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+
+  <body>
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <nav class="nav navbar-nav navbar-left">
+            <font color="#FFFFFF">Bookers</font>
+          </nav>
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+              <li>
+                <%= link_to 'Home' ,user_path(current_user.id), :class => "glyphicon glyphicon-home" %>
+              </li>
+              <li>
+                <%= link_to 'Users' ,users_path, :class => "glyphicon glyphicon-user" %>
+              </li>
+              <li>
+                <%= link_to 'Books' ,books_path, :class => "glyphicon glyphicon-book" %>
+              </li>
+              <li>
+                <%= link_to 'logout',destroy_user_session_path, method: :delete , :class =>  "glyphicon glyphicon-log-out" %>
+              </li>
+
+              <% else %>
+
+              <li>
+                <%= link_to 'Home' , root_path , :class => "glyphicon glyphicon-home" %>
+              </li>
+              <li>
+                <%= link_to 'About' , home_about_path, :class => "glyphicon glyphicon-link" %>
+              </li>
+              <li>
+                <%= link_to 'sign up' ,new_user_registration_path, :class => "glyphicon glyphicon-edit" %>
+              </li>
+              <li>
+                <%= link_to 'login',new_user_session_path, :class => "glyphicon glyphicon-log-in" %>
+              </li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+    </header>
+
+
+
+  <main>
+    <div class="container">
+      <div class="row">
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <%= yield %>
+        <div id="container-box">
+          <div id="theTarget">
+            <div class="image1" id="skipper"></div>
+            <div class="image2" id="skipper"></div>
+            <div class="image3" id="skipper"></div>
+            <div class="image4" id="skipper"></div>
+            <div class="image5" id="skipper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class='col-xs-3 col-xs-offset-9'>
+          <p class="copyright">Copyright Infratop.inc </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </body>
+</html>
+
+
+
+
